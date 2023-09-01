@@ -1,4 +1,4 @@
-# revisao-spring
+# Revisão Espaçada
 
 O projeto consiste em um software de uso simples e didático para estudante de todas as áreas para revisão de conteúdo teórico, usando as técnicas de revisão espaçada e inspirado no projeto open source do Anki.
 
