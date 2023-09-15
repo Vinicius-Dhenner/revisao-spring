@@ -4,11 +4,16 @@
  */
 package br.com.revisao.dto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author 08217630160
  */
-public class FlashcardDto {
+
+
+public class FlashcardDto implements Serializable{
+    
     private Long id;
     private String front;
     private String back;

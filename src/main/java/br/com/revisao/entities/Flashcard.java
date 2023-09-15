@@ -4,21 +4,29 @@
  */
 package br.com.revisao.entities;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
  *
  * @author 08217630160
  */
-
+@Entity
 @Table (name = "flashcard")
-public class Flashcard {
-        private Long id;
+public class Flashcard implements Serializable{
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String front;
     private String back;
     private Integer term;
 
-    public Flashcard(Long id, String front, String back, Integer term) {
+public Flashcard(Long id, String front, String back, Integer term) {
     this.id = id;
     this.front = front;
     this.back = back;
