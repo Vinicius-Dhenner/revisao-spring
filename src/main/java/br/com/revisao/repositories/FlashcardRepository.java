@@ -6,11 +6,14 @@ package br.com.revisao.repositories;
 
 import br.com.revisao.entities.Flashcard;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author 08217630160
  */
+
+@Repository
 public interface FlashcardRepository extends JpaRepository<Flashcard, Long>{
     
 }
