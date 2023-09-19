@@ -81,14 +81,11 @@ public class User {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + Objects.hashCode(this.name);
-        hash = 79 * hash + Objects.hashCode(this.email);
-        hash = 79 * hash + Objects.hashCode(this.passoword);
-        hash = 79 * hash + Objects.hashCode(this.subjects);
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.id);
         return hash;
     }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -104,7 +101,6 @@ public class User {
         final User other = (User) obj;
         return Objects.equals(this.id, other.id);
     }
-    
     
     
 }
