@@ -36,8 +36,7 @@ public class FlashcardController {
 
     @GetMapping("/{id}")
     public Flashcard getFlashcardById(@PathVariable Long id) {
-        return flashcardRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Flashcard " + id + " não encontrado."));
+        return null;
     }
 
     @PostMapping
@@ -47,14 +46,7 @@ public class FlashcardController {
 
     @PutMapping("/{id}")
     public Flashcard updateFlashcard(@PathVariable Long id, @RequestBody Flashcard flashcardDetails) {
-        Flashcard flashcard = flashcardRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Flashcard " + id + " não encontrado."));
-
-        flashcard.setFront(flashcardDetails.getFront());
-        flashcard.setBack(flashcardDetails.getBack());
-        flashcard.setTerm(flashcardDetails.getTerm());
-
-        return flashcardRepository.save(flashcard);
+        return null;
     }
 
     @DeleteMapping("/{id}")

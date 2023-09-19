@@ -4,10 +4,12 @@
  */
 package br.com.revisao.repositories;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 /**
  *
  * @author Administrador
  */
-public interface UserRepository {
+public interface UserRepository extends JpaRepository {
     
 }

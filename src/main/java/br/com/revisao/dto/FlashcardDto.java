@@ -13,7 +13,7 @@ import java.io.Serializable;
 
 
 public class FlashcardDto implements Serializable{
-    
+     
     private Long id;
     private String front;
     private String back;

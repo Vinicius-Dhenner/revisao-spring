@@ -5,6 +5,7 @@
 package br.com.revisao.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,6 +32,31 @@ public Flashcard(Long id, String front, String back, Integer term) {
     this.front = front;
     this.back = back;
     this.term = term;
+}
+
+@Override
+public int hashCode() {
+    int hash = 3;
+    hash = 89 * hash + Objects.hashCode(this.id);
+    hash = 89 * hash + Objects.hashCode(this.front);
+    hash = 89 * hash + Objects.hashCode(this.back);
+    hash = 89 * hash + Objects.hashCode(this.term);
+    return hash;
+}
+
+@Override
+public boolean equals(Object obj) {
+    if (this == obj) {
+        return true;
+    }
+    if (obj == null) {
+        return false;
+    }
+    if (getClass() != obj.getClass()) {
+        return false;
+    }
+    final Flashcard other = (Flashcard) obj;
+    return Objects.equals(this.id, other.id);
 }
 
 public Long getId() {
@@ -64,6 +90,4 @@ public Integer getTerm() {
 public void setTerm(Integer term) {
     this.term = term;
 }
-
-
 }

@@ -9,7 +9,6 @@ package br.com.revisao.controllers;
  * @author Administrador
  */
 import br.com.revisao.entities.User;
-import br.com.revisao.exceptions.ResourceNotFoundException;
 import br.com.revisao.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,25 +33,19 @@ public class UserController {
 
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
-        return userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+        return null;
     }
 
     @PostMapping
     public User createUser(@RequestBody User user) {
-        return userRepository.save(user);
+        return null;
     }
 
     @PutMapping("/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody User userDetails) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+       
 
-        user.setName(userDetails.getName());
-        user.setEmail(userDetails.getEmail());
-        user.setPassword(userDetails.getPassword());
-
-        return userRepository.save(user);
+        return null;
     }
 
     @DeleteMapping("/{id}")
