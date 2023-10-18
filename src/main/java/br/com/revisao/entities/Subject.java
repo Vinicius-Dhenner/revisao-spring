@@ -4,17 +4,29 @@
  */
 package br.com.revisao.entities;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author 08217630160
  */
-public class Subject {
-    
+@Entity
+@Table (name="subjects")
+public class Subject implements Serializable{
+     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; 
     private String name;
+    
+    @OneToMany
     private List<Flashcard> flashcards;
 
     public Subject(Long id, String name, List<Flashcard> flashcards) {
@@ -22,14 +34,14 @@ public class Subject {
         this.name = name;
         this.flashcards = flashcards;
     }
-
+   
     public Subject() {
     }
 
     public Long getId() {
         return id;
     }
-
+v
     public void setId(Long id) {
         this.id = id;
     }
@@ -45,9 +57,13 @@ public class Subject {
     public List<Flashcard> getFlashcards() {
         return flashcards;
     }
-
-    public void setFlashcards(List<Flashcard> flashcards) {
-        this.flashcards = flashcards;
+    
+        public void addFlashcard(Flashcard flashcard) {
+        flashcards.add(flashcard);
+    }
+    
+    public void removeFlashcard(Flashcard flashcard) {
+        flashcards.remove(flashcard);
     }
 
     @Override

@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * @author 08217630160
  */
 @Entity
-@Table (name = "flashcard")
+@Table (name = "flashcards")
 public class Flashcard implements Serializable{
     
     @Id
@@ -33,6 +33,11 @@ public Flashcard(Long id, String front, String back, Integer term) {
     this.back = back;
     this.term = term;
 }
+
+    public Flashcard() {
+    }
+
+
 
 @Override
 public int hashCode() {

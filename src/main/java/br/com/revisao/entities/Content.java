@@ -4,14 +4,26 @@
  */
 package br.com.revisao.entities;
 
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import org.hibernate.annotations.ManyToAny;
 
 /**
  *
  * @author 08217630160
  */
-public class Content extends Subject{
+@Entity
+@Table(name="contets")
+public class Content extends Subject {
+    
+    @ManyToAny
     private Subject parentSubject;
+    
+    @OneToMany
+    private List<Flashcard> flashcards;
 
     @Override
     public int hashCode() {
