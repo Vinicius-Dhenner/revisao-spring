@@ -41,7 +41,7 @@ public class Subject implements Serializable{
     public Long getId() {
         return id;
     }
-v
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -58,7 +58,7 @@ v
         return flashcards;
     }
     
-        public void addFlashcard(Flashcard flashcard) {
+    public void addFlashcard(Flashcard flashcard) {
         flashcards.add(flashcard);
     }
     

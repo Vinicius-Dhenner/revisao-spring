@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import org.hibernate.annotations.ManyToAny;
 
 /**
  *
@@ -19,11 +19,27 @@ import org.hibernate.annotations.ManyToAny;
 @Table(name="contets")
 public class Content extends Subject {
     
-    @ManyToAny
+    @OneToOne
     private Subject parentSubject;
     
     @OneToMany
     private List<Flashcard> flashcards;
+
+    @Override
+    public List<Flashcard> getFlashcards() {
+        return flashcards;
+    }
+
+    @Override
+    public void addFlashcard(Flashcard flashcard) {
+        flashcards.add(flashcard);
+    }
+    
+    @Override
+    public void removeFlashcard(Flashcard flashcard) {
+        flashcards.remove(flashcard);
+    }
+    
 
     @Override
     public int hashCode() {
