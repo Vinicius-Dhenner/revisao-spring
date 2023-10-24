@@ -4,6 +4,9 @@
  */
 package br.com.revisao.services;
 
+import br.com.revisao.repositories.UserRepository;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -15,5 +18,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-
+    private final UserRepository userRepository;
+    
+    @Autowired
+    private UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+    
+    private Optional getUserById(Long id) {
+        return userRepository.findById(id);
+    }
 }

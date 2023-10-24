@@ -26,25 +26,8 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
-
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
-        return null;
-    }
-
-    @PostMapping
-    public User createUser(@RequestBody User user) {
-        return null;
-    }
-
-    @PutMapping("/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody User userDetails) {
-       
-
         return null;
     }
 

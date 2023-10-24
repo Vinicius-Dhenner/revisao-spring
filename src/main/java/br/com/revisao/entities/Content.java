@@ -39,7 +39,6 @@ public class Content extends Subject {
     public void removeFlashcard(Flashcard flashcard) {
         flashcards.remove(flashcard);
     }
-    
 
     @Override
     public int hashCode() {

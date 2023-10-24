@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package br.com.revisao.controllers;
-import br.com.revisao.exceptions.ResourceNotFoundException;
 
 import br.com.revisao.entities.Flashcard;
 import br.com.revisao.repositories.FlashcardRepository;
@@ -42,11 +41,6 @@ public class FlashcardController {
     @PostMapping
     public Flashcard createFlashcard(@RequestBody Flashcard flashcard) {
         return flashcardRepository.save(flashcard);
-    }
-
-    @PutMapping("/{id}")
-    public Flashcard updateFlashcard(@PathVariable Long id, @RequestBody Flashcard flashcardDetails) {
-        return null;
     }
 
     @DeleteMapping("/{id}")
