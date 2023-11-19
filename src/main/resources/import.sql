@@ -1,0 +1,5 @@
+insert into matters (id, name) values (1, 'Português')
+insert into matters (id, name) values (2, 'Matemática')
+insert into matters (id, name) values (3, 'Informática Básica')
+insert into matters (id, name) values (4, 'Atualidades')
+insert into matters (id, name) values (5, 'Informática Avançada')
