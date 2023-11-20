@@ -13,8 +13,13 @@ import java.util.List;
 @RequestMapping("matters")
 public class MatterController {
 
-    @Autowired
+    final
     MatterRepository matterRepository;
+
+    public MatterController(MatterRepository matterRepository) {
+        this.matterRepository = matterRepository;
+    }
+
     @GetMapping
     public List<MatterEntity> getAll(){
         List<MatterEntity> matterList = matterRepository.findAll();
