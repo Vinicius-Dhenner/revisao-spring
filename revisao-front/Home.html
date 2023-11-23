@@ -6,6 +6,23 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <title>Lista Centralizada</title>
+  <style>
+    .list-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .item-text {
+      display: flex;
+      align-items: center;
+    }
+
+    .excluir-icon {
+      margin-left: 10px; /* Espaçamento entre o texto e o ícone de excluir */
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -35,9 +52,20 @@
       materias.forEach(materia => {
         const novoItem = document.createElement('div');
         novoItem.className = 'list-item';
-        novoItem.innerHTML = `<div class="item-icon">📚</div><div class="item-text"><a href="#">${materia.name}</a></div>`;
+        novoItem.innerHTML = `
+          <div class="item-text">
+            <div class="item-icon">📚</div>
+            <a href="./Exibição/ExibirFlashcards/index.html">${materia.name}</a>
+          </div>
+          <span class="excluir-icon" onclick="excluirMateria(${materia.id})">🗑️</span>`;
         lista.insertAdjacentElement('beforeend', novoItem);
       });
+    }
+
+    function excluirMateria(materiaId) {
+      // Aqui você pode adicionar a lógica para confirmar a exclusão e enviar a requisição para o backend
+      // Por enquanto, apenas exibe um alerta para ilustrar a funcionalidade
+      alert(`Excluir matéria com ID ${materiaId}`);
     }
 
     document.addEventListener('DOMContentLoaded', carregarMateriasDoBackend);
@@ -49,7 +77,12 @@
         const lista = document.getElementById('materiasContainer');
         const novoItem = document.createElement('div');
         novoItem.className = 'list-item';
-        novoItem.innerHTML = `<div class="item-icon">📚</div><div class="item-text"><a href="#">${nomeMateria}</a></div>`;
+        novoItem.innerHTML = `
+          <div class="item-text">
+            <div class="item-icon">📚</div>
+            <a href="./Exibição/ExibirFlashcards/index.html">${nomeMateria}</a>
+          </div>
+          <span class="excluir-icon" onclick="excluirMateria(${Math.floor(Math.random() * 100)})">🗑️</span>`;
         
         lista.insertAdjacentElement('beforeend', novoItem);
       }

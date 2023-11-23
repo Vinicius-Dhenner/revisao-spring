@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <title>Lista Centralizada</title>
+  <style>
+    .button-container {
+      display: flex;
+      gap: 10px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="list-container">
+      <h3 id="flashcardFront">Front Content 1</h3>
+      <p id="flashcardBack" class="hidden">Back Content 1</p>
+      <button id="exibirRespostaButton" onclick="exibirResposta()">Exibir Resposta</button>
+      <div class="button-container hidden" id="buttonsContainer">
+        <button type="button" style="background-color: #00FF00;" onclick="avaliarFlashcard('fácil')">Fácil</button>
+        <button type="button" style="background-color: #FFD700;" onclick="avaliarFlashcard('médio')">Médio</button>
+        <button type="button" style="background-color: #FF0000;" onclick="avaliarFlashcard('difícil')">Difícil</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    let flashcardIndex = 1;
+
+    function carregarFlashcardDoBackend(id) {
+      fetch(`http://localhost:8080/flashcards/${id}`)
+        .then(response => response.json())
+        .then(data => {
+          exibirFlashcard(data);
+        })
+        .catch(error => console.error('Erro ao obter flashcard do backend:', error));
+    }
+
+    function exibirFlashcard(flashcard) {
+      const flashcardFront = document.getElementById('flashcardFront');
+      const flashcardBack = document.getElementById('flashcardBack');
+      const buttonsContainer = document.getElementById('buttonsContainer');
+      const exibirRespostaButton = document.getElementById('exibirRespostaButton');
+
+      if (flashcard) {
+        flashcardFront.textContent = flashcard.front;
+        flashcardBack.textContent = flashcard.back;
+      } else {
+        flashcardFront.textContent = 'Nenhum flashcard disponível.';
+        flashcardBack.textContent = '';
+      }
+
+      buttonsContainer.classList.add('hidden');
+      flashcardBack.classList.add('hidden');
+
+      exibirRespostaButton.classList.remove('hidden');
+    }
+
+    function exibirResposta() {
+      const flashcardBack = document.getElementById('flashcardBack');
+      const buttonsContainer = document.getElementById('buttonsContainer');
+      const exibirRespostaButton = document.getElementById('exibirRespostaButton');
+
+      flashcardBack.classList.remove('hidden');
+      buttonsContainer.classList.remove('hidden');
+
+      exibirRespostaButton.classList.add('hidden');
+    }
+
+    function avaliarFlashcard(nivelDificuldade) {
+      flashcardIndex++;
+      carregarFlashcardDoBackend(flashcardIndex);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      carregarFlashcardDoBackend(flashcardIndex);
+    });
+  </script>
+</body>
+</html>
