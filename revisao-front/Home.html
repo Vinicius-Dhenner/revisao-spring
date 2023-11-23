@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <title>Lista Centralizada</title>
+</head>
+<body>
+  <div class="container">
+    <div class="list-container" id="materiasContainer">
+      <h2>Revisão Inteligente</h2>
+      <!-- Matérias do backend serão adicionadas aqui -->
+    </div>
+    <button type="button" style="background-color: #673DE6;" onclick="adicionarMateria()">Cadastrar Matéria</button>
+    <a href="./Exibição/CriarFlashcard/index.html">
+      <button type="button" style="background-color: #673DE6;">Criar Flashcard</button>
+    </a>
+  </div>
+
+  <script>
+    function carregarMateriasDoBackend() {
+      fetch('http://localhost:8080/matters')
+        .then(response => response.json())
+        .then(data => {
+          adicionarMaterias(data);
+        })
+        .catch(error => console.error('Erro ao obter matérias do backend:', error));
+    }
+
+    function adicionarMaterias(materias) {
+      const lista = document.getElementById('materiasContainer');
+
+      materias.forEach(materia => {
+        const novoItem = document.createElement('div');
+        novoItem.className = 'list-item';
+        novoItem.innerHTML = `<div class="item-icon">📚</div><div class="item-text"><a href="#">${materia.name}</a></div>`;
+        lista.insertAdjacentElement('beforeend', novoItem);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', carregarMateriasDoBackend);
+
+    function adicionarMateria() {
+      const nomeMateria = prompt("Digite o nome da matéria");
+
+      if (nomeMateria) {
+        const lista = document.getElementById('materiasContainer');
+        const novoItem = document.createElement('div');
+        novoItem.className = 'list-item';
+        novoItem.innerHTML = `<div class="item-icon">📚</div><div class="item-text"><a href="#">${nomeMateria}</a></div>`;
+        
+        lista.insertAdjacentElement('beforeend', novoItem);
+      }
+    }
+  </script>
+</body>
+</html>
